@@ -50,8 +50,24 @@ func monteCarloSim() {
 	fmt.Printf("Pi Aproximated with %v samples: %v\n", sampleSize, piAprox)
 }
 
+func leibnizSim() {
+  fmt.Print("Sample Size?: ")
+  var input string
+  fmt.Scanln(&input)
+  sampleSize := determineSampleSize(input)
+
+  sum, term := 0.0, 0.0
+  for i := 0; i <= sampleSize; i++ {
+    term = math.Pow(-1.0, float64(i)) / (2.0 * float64(i) + 1.0)
+    sum += term
+  } 
+  pi := sum * 4.0
+
+  fmt.Printf("Pi aproximated with %v samples: %v\n", sampleSize, pi)
+}
+
 func optionsMenu() int {
-	fmt.Print("Options: \nMonte Carlo = 1\nMonte Carlo also (for now...) = 2\nExit = exit\n")
+	fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nExit = exit\n")
 	fmt.Print("Option? : ")
 	var input string
 	fmt.Scanln(&input)
@@ -73,7 +89,7 @@ func runOption(input int) {
 	case 1:
 		monteCarloSim()
 	case 2:
-		monteCarloSim()
+		leibnizSim()
 	case -1:
 		fmt.Println("Input error")
 	}
