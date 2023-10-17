@@ -66,8 +66,33 @@ func leibnizSim() {
   fmt.Printf("Pi aproximated with %v samples: %v\n", sampleSize, pi)
 }
 
+func gaussLegendreMethod() {
+  fmt.Print("Terms?: ")
+  var input string
+  fmt.Scanln(&input)
+  sampleSize := determineSampleSize(input)
+
+  a_n := 1.0
+  b_n := 1.0/math.Sqrt(2.0)
+  t_n := 1.0/4.0
+  p_n := 1.0
+
+  for i := 0; i < sampleSize; i++ {
+    a_n1 := (a_n + b_n)/2.0
+    b_n1 := math.Sqrt(a_n * b_n)
+    t_n1 := t_n - p_n * ((a_n - a_n1) * (a_n - a_n1))
+    p_n1 := 2 * p_n
+    pi := (math.Pow(float64(a_n1 + b_n1), 2) / (4 * t_n1))
+    fmt.Printf("Pi at index %v: %v\n", i, pi)
+    a_n = a_n1
+    b_n = b_n1
+    t_n = t_n1
+    p_n = p_n1
+  }
+}
+
 func optionsMenu() int {
-	fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nExit = exit\n")
+  fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nGause-Legendre Method = 3\nExit = exit\n")
 	fmt.Print("Option? : ")
 	var input string
 	fmt.Scanln(&input)
@@ -77,6 +102,8 @@ func optionsMenu() int {
 		return 1
 	case "2":
 		return 2
+  case "3":
+    return 3
 	case "exit":
 		fmt.Println("Exiting...")
 		os.Exit(1)
@@ -90,6 +117,8 @@ func runOption(input int) {
 		monteCarloSim()
 	case 2:
 		leibnizSim()
+  case 3:
+    gaussLegendreMethod()
 	case -1:
 		fmt.Println("Input error")
 	}
