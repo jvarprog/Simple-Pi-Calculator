@@ -67,7 +67,7 @@ func leibnizSim() {
 }
 
 func gaussLegendreMethod() {
-  fmt.Print("Terms?: ")
+  fmt.Print("Terms? I suggest < 10: ")
   var input string
   fmt.Scanln(&input)
   sampleSize := determineSampleSize(input)
@@ -92,7 +92,7 @@ func gaussLegendreMethod() {
 }
 
 func optionsMenu() int {
-  fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nGause-Legendre Method = 3\nExit = exit\n")
+  fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nGauss-Legendre Method = 3\nExit = exit\n")
 	fmt.Print("Option? : ")
 	var input string
 	fmt.Scanln(&input)
