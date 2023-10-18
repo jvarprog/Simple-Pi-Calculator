@@ -8,7 +8,7 @@ import (
 )
 
 func optionsMenu() int {
-	fmt.Print("Options: \nMonte Carlo = 1\nLeibniz Sum = 2\nGauss-Legendre Method = 3\nExit = exit\n")
+	fmt.Print("\nOptions: \nMonte Carlo = 1\nLeibniz Sum = 2\nGauss-Legendre Method = 3\nExit = exit\n")
 	fmt.Print("Option? : ")
 	var input string
 	fmt.Scanln(&input)
@@ -43,5 +43,8 @@ func runOption(input int) {
 
 func main() {
 	optionValue := optionsMenu()
-	runOption(optionValue)
+	for optionValue != -1 {
+    runOption(optionValue)
+    optionValue = optionsMenu()
+  }
 }
